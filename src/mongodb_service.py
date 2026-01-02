@@ -3,7 +3,6 @@ from pymongo import MongoClient
 from pymongo.server_api import ServerApi
 from pymongo.asynchronous.database import AsyncDatabase
 from pymongo.database import Database
-import uuid
 
 class MongoAsyncService:
 

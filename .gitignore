@@ -16,7 +16,7 @@
 *.pem
 
 #Environment
-.env
+#.env
 .venv
 env/
 venv/

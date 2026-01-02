@@ -11,7 +11,7 @@ def verify_token(token: str):
     result = False
     email = None
     try:
-        url = os.environ["API_URL"] + "/auth/validate-token"
+        url = os.environ["API_AUTH_URL"] + "/auth/validate-token"
         headers = {"Authorization": "Bearer " + token}
         
         response = requests.post(url, headers= headers)
@@ -27,7 +27,7 @@ def verify_token(token: str):
 def save_message(message: Message, token: str):
     result = False
     try:
-        url = os.environ["API_URL"] + "/chat/save-message"
+        url = os.environ["API_CHAT_URL"] + "/chat/save-message"
         headers = {
             "Authorization": "Bearer " + token,
             "Content-Type": "application/json"
@@ -46,7 +46,7 @@ def save_message(message: Message, token: str):
 def get_messages(user: str, token: str) -> list[Message] | None:
     result = None
     try:
-        url = os.environ["API_URL"] + "/chat/get-messages"
+        url = os.environ["API_CHAT_URL"] + "/chat/get-messages"
         headers = {"Authorization": "Bearer " + token}
         
         response = requests.get(url, headers= headers)
@@ -61,7 +61,7 @@ def get_messages(user: str, token: str) -> list[Message] | None:
 def update_status(token: str, status: bool):
     result = False
     try:
-        url = str(f"{ os.environ["API_URL"] }/chat/change-status/?user_status={ status }")
+        url = str(f"{ os.environ["API_AUTH_URL"] }/user/change-status/?user_status={ status }")
         headers = {"Authorization": "Bearer " + token}
 
         response = requests.post(url, headers = headers)
