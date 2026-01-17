@@ -1,14 +1,14 @@
 import os, http, json
 from websockets.sync.server import serve
 from dotenv import load_dotenv
+from log2mongo import log2mongo
 
 from src.message_service import get_current_user, remove_connection, try_to_save_message, validate_message
 from src.user_service import verify_token, update_status, get_messages
-from src.mongo_logging import MongoLogger
 
 users = dict()
 load_dotenv()
-log = MongoLogger(os.environ["LOG_DB_URL"], os.environ["LOG_DATABASE_NAME"], "", os.environ["LOG_LEVEL"])
+log = log2mongo(os.environ["LOG_DB_URL"], os.environ["LOG_DATABASE_NAME"], level = os.environ["LOG_LEVEL"])
 
 def handler(websocket):
     try:

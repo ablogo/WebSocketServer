@@ -1,5 +1,4 @@
 pip
 websockets
 requests
-pymongo[srv]
 dotenv

@@ -1,13 +1,13 @@
 from datetime import datetime
 import os, json
 from dotenv import load_dotenv
+from log2mongo import log2mongo
 
 from src.user_service import save_message
 from src.message_model import Message
-from src.mongo_logging import MongoLogger
 
 load_dotenv()
-log = MongoLogger(os.environ["LOG_DB_URL"], os.environ["LOG_DATABASE_NAME"], "", os.environ["LOG_LEVEL"])
+log = log2mongo(os.environ["LOG_DB_URL"], os.environ["LOG_DATABASE_NAME"], "", os.environ["LOG_LEVEL"])
 
 def to_message(dct) -> Message | None:
     try:
